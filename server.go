@@ -8,7 +8,14 @@ import (
 	"github.com/pusher/pusher-http-go"
 	"github.com/alexsasharegan/dotenv"
 	"os"
+	"html/template"
 )
+
+
+type Keys struct {
+	Key   string
+	Cluster string
+}
 
 func home (w http.ResponseWriter, r *http.Request) {
 	dat, err := ioutil.ReadFile("./templates/index.go")
@@ -22,6 +29,7 @@ func home (w http.ResponseWriter, r *http.Request) {
 		fmt.Printf("Parse error: %v", err)
 		return
 	}
+
 	w.Write([]byte(tmpl))
 }
 
@@ -57,7 +65,37 @@ func base(w http.ResponseWriter, r *http.Request) {
 }
 
 func results(w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/results.html")
+	dat, err := ioutil.ReadFile("./templates/results.go")
+	if err != nil {
+		fmt.Printf("ReadFile error: %v", err)
+		return
+	}
+
+	tmpl, err := jade.Parse("results", string(dat))
+	if err != nil {
+		fmt.Printf("Parse error: %v", err)
+		return
+	}
+
+	keys := Keys{
+		Key:   os.Getenv("APP_KEY"),
+		Cluster: os.Getenv("APP_CLUSTER"),
+	}
+
+	goTpl, err := template.New("html").Parse(tmpl)
+	if err != nil {
+		fmt.Printf("\nTemplate parse error: %v", err)
+		return
+	}
+	err = goTpl.Execute(w, keys)
+	if err != nil {
+		fmt.Printf("\nExecute error: %v", err)
+		return
+	}
+}
+
+func chartjs(w http.ResponseWriter, r *http.Request) {
+	http.ServeFile(w, r, "templates/chart.js")
 }
 
 func main() {
@@ -68,6 +106,7 @@ func main() {
 	}
 	http.HandleFunc("/", base)
 	http.HandleFunc("/results", results)
+	http.HandleFunc("/chart.js", chartjs)
 
 	if err := http.ListenAndServe(":8080", nil); err != nil {
 		panic(err)
