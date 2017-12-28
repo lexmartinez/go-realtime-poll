@@ -23,7 +23,17 @@ $ ./server
 
 ```
 
-## Screenshot
+## Environment
+For pushe connection following environment variables must be configured into `.env` file located at project root
+
+```bash
+APP_ID=545346574
+APP_KEY=867564392204459023343
+APP_SECRET=b434mnm45n3j28fad
+APP_CLUSTER=us2
+```````
+
+## Screenshots
 
 ![](https://github.com/lexmartinez/go-realtime-poll/raw/master/screenshots/screenshot-1.png)
 
