@@ -8,7 +8,7 @@ import (
 )
 
 func home (w http.ResponseWriter, r *http.Request) {
-	dat, err := ioutil.ReadFile("./templates/index.pug")
+	dat, err := ioutil.ReadFile("./templates/index.go")
 	if err != nil {
 		fmt.Printf("ReadFile error: %v", err)
 		return
