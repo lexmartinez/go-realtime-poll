@@ -1,5 +1,5 @@
 # go-realtime-poll
-:postbox: A Simple Electronic Realtime Poll built on Go 
+:postbox: A Simple Electronic Realtime Poll written in Go 
 
 Built following the original idea of [@christiannwamba](https://github.com/christiannwamba) at `codementor.io` article: [How to Build an Electronic Realtime Poll in 5 Steps](https://www.codementor.io/christiannwamba/how-to-build-an-electronic-realtime-poll-in-5-steps-es41iluc9)
 
