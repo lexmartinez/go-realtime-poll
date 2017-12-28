@@ -2,10 +2,24 @@ package main
 
 import (
 	"net/http"
+	"github.com/Joker/jade"
+	"io/ioutil"
+	"fmt"
 )
 
 func home (w http.ResponseWriter, r *http.Request) {
-	http.ServeFile(w, r, "static/index.html")
+	dat, err := ioutil.ReadFile("./templates/index.pug")
+	if err != nil {
+		fmt.Printf("ReadFile error: %v", err)
+		return
+	}
+
+	tmpl, err := jade.Parse("index", string(dat))
+	if err != nil {
+		fmt.Printf("Parse error: %v", err)
+		return
+	}
+	w.Write([]byte(tmpl))
 }
 
 func vote (w http.ResponseWriter, r *http.Request) {
@@ -28,8 +42,7 @@ func base(w http.ResponseWriter, r *http.Request) {
 }
 
 func results(w http.ResponseWriter, r *http.Request) {
-	message := "results.html"
-	w.Write([]byte(message))
+	http.ServeFile(w, r, "static/results.html")
 }
 
 func main() {
