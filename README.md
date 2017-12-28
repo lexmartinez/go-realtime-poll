@@ -8,13 +8,28 @@ Built following the original idea of [@christiannwamba](https://github.com/chris
 ## Build Setup
 
 ``` bash
-$ ...
+
+# clone repo
+$ git clone https://github.com/lexmartinez/go-realtime-poll
+
+# change directory to cloned app
+$ cd go-realtime-poll
+
+# go build
+$ go build server.go
+
+# start the server
+$ ./server
 
 ```
 
 ## Screenshot
 
- ...
+![](https://github.com/lexmartinez/go-realtime-poll/raw/master/screenshots/screenshot-1.png)
+
+![](https://github.com/lexmartinez/go-realtime-poll/raw/master/screenshots/screenshot-2.png)
+
+![](https://github.com/lexmartinez/go-realtime-poll/raw/master/screenshots/screenshot-3.png)
 
 ## License
 
