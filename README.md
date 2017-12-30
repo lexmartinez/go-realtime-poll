@@ -24,7 +24,7 @@ $ ./server
 ```
 
 ## Environment
-For pushe connection following environment variables must be configured into `.env` file located at project root
+For pusher connection following environment variables must be configured into `.env` file located at project root (with your own values)
 
 ```bash
 APP_ID=545346574
